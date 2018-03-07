@@ -1,3 +1,8 @@
+//Caleb Smith-Salzberg, Naotaka Kinoshita
+//Team callMeNao 
+//SoftDev2 pd7
+//K9 -- Ask Circles [Change || Die]
+//2018-03-06
 var pic = document.getElementById("vimage");
 var btn = document.getElementById("clear");
 
@@ -29,18 +34,20 @@ var drawCircle = function(x, y) {
     cl.setAttribute("r", 20);
     cl.setAttribute("fill", "red");
     cl.setAttribute("stroke", "black");
-    cl.addEventListener("click", change(cl), true);
+    cl.addEventListener("click", change, true);
     pic.appendChild(cl);
     
 };
 
 var change = function(e) {
-    if (e.getAttribute("fill") == "red") {
+    if (this.getAttribute("fill") == "red") {
 	console.log("green");
-	e.setAttribute("fill", "green");
+	this.setAttribute("fill", "green");
+	e.stopPropagation();
     }
-    else if (e.getAttribute("fill") == "green") {
-	e.remove();
+    else if (this.getAttribute("fill") == "green") {
+	this.remove();
+	e.stopPropagation();
 	drawCircle(Math.floor(Math.random() * pic.getAttribute("width")), Math.floor(Math.random() * pic.getAttribute("height")));
     }
 };
